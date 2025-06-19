@@ -7,6 +7,10 @@ export default {
   ],
 
   theme: {
+    fontFamily : {
+      sans : ["Montserrat", "Padauk", "sans-serif"],
+    },
+
     extend: {},
   },
   plugins: [require("flowbite/plugin")],
