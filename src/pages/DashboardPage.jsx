@@ -9,19 +9,19 @@ const DashboardPage = () => {
   return (
     <section  className="p-5 min-h-screen">
       <Container>
-        <div className="grid grid-cols-3 gap-5">
-          <div className="col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-1 grid-row-3 gap-3  ">
+          <div className="col-span-1 row-span-1">
             <ModuleBtn
-              name={"Product"}
-              icon={<CiCircleList />}
+              name={"Product List"}
+              icon={<CiCircleList className="size-6" />}
               url={"/product"}
             />
           </div>
-          <div className="col-span-1">
-            <ModuleBtn name={"Sale"} icon={<CiShoppingCart />} url={"/sale"} />
+          <div className="col-span-1 row-span-1">
+            <ModuleBtn name={"Sale Section"} icon={<CiShoppingCart className="size-6"/>} url={"/sale"} />
           </div>
-          <div className="col-span-1">
-            <ModuleBtn name={"Voucher"} icon={<CiReceipt />} url={"/voucher"} />
+          <div className="col-span-1 row-span-1">
+            <ModuleBtn name={"Voucher Store"} icon={<CiReceipt className="size-6" />} url={"/voucher"} />
           </div>
         </div>
       </Container>
