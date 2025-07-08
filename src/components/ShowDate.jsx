@@ -2,7 +2,7 @@ import React from "react";
 
 const ShowDate = ({ timestamp }) => {
   const date = new Date(timestamp);
-    console.log(date);
+    // console.log(date);
   const currentDate = date.toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",

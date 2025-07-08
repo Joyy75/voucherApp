@@ -19,7 +19,7 @@ const ProductList = () => {
 
 
   return (
-    <div className="container h-full p-3 bg-gradient-to-bl from-slate-300 to-slate-800 rounded-lg border  border-slate-600 shadow-inner shadow-slate-800 dark:bg-slate-900 dark:border-slate-700 dark:shadow-slate-800">
+    <div className=" h-full p-3 bg-gradient-to-bl from-slate-300 to-slate-800 rounded-lg border  border-slate-600 shadow-inner shadow-slate-800 dark:bg-slate-900 dark:border-slate-700 dark:shadow-slate-800">
       <div className=" flex justify-between mb-2">
         <div className="">
           <div className="relative mb-3 mt-3">
@@ -45,7 +45,7 @@ const ProductList = () => {
         </div>
         <div className="flex justify-end items-center">
           <Link
-            to=""
+            to="/product/create"
             className="text-gray-300 flex justify-center items-center gap-3 bg-gray-900 hover:bg-slate-900 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-slate-800 dark:hover:bg-slate-950 hover:text-white transition-colors duration-200"
           >
             Add New Product

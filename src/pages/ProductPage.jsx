@@ -7,7 +7,7 @@ const ProductPage = () => {
   return (
     <section>
       <Container>
-        <Breadcrumb currentPageTitle={"Product List"}/>
+        <Breadcrumb currentPageTitle={"Product List"} link={[]}/>
         <ProductList />
       </Container>
     </section>

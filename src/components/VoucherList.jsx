@@ -5,7 +5,13 @@ import { CiCirclePlus } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
+import useSWR from 'swr';
+import VoucherListRow from './VoucherListRow';
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 const VoucherList = () => {
+  const {data, isLoading, error} = useSWR(import.meta.env.VITE_API_URL + "/vouchers",fetcher);
+  
   return (
       <div className="container p-2 bg-gradient-to-bl from-slate-300 to-slate-800 rounded-lg border  border-slate-600 shadow-inner shadow-slate-800 dark:bg-slate-900 dark:border-slate-700 dark:shadow-slate-800">
           <div className=" flex justify-between mb-2">
@@ -46,7 +52,7 @@ const VoucherList = () => {
               <thead className="text-sm text-gray-100 uppercase bg-gradient-to-t from-slate-400 to-slate-800 ">
                 <tr>
                   <th scope="col" className="px-6 py- font-light">
-                    #
+                   # VoucherID
                   </th>
                   <th scope="col" className="px-6 py-3 font-light">
                     Customer Name
@@ -66,36 +72,19 @@ const VoucherList = () => {
               <tbody>
                 <tr className="bg-slate-700 hover:bg-slate-600 border-b text-gray-200 hover:text-gray-100 transition-colors duration-200 hidden last:table-row">
                   <td className="px-6 py-4 text-center" colSpan={5}>
-                    There are no record .
+                    There are no vouchers .
                   </td>
                 </tr>
-                <tr className="bg-slate-700 hover:bg-slate-600 border-b-[1px] text-gray-200 hover:text-gray-100 transition-colors duration-200">
-                  <td className="px-6 py-4">1</td>
-                  <td className="px-6 py-4 ">Thiri Thal Su Hlaing </td>
-                  <td className="px-6 py-4 text-end">susu@gmail.com</td>
-                  <td className="px-6 py-4 text-end">2025-20-0</td>
-                  <td className="px-6 py-4 text-end">
-                    <div className="inline-flex rounded-md shadow-xs gap-0 " role="group">
-                      <Link to="">
-                        <button
-                          type="button"
-                          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-transparent dark:text-green-400 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:ring-blue-500 dark:focus:text-white"
-                        >
-                          <CiEdit className="inline-block text-xl" />
-                        </button>
-                      </Link>
-                      <Link to="">
-                        <button
-                          type="button"
-                          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-transparent dark:border-gray-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:ring-blue-500 dark:focus:text-white"
-                        >
-                          <CiTrash className="inline-block text-xl" />
-                        </button>
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-                
+
+                 {isLoading ? (
+              <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hidden last:table-row">
+                <td colSpan={5} className="px-6 py-4 text-center">
+                  Loading ...
+                </td>
+              </tr>
+            ) : (
+              data?.map((voucher, index) => <VoucherListRow key={index} voucher={voucher} />)
+            )}
               </tbody>
             </table>
           </div>

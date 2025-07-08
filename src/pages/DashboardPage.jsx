@@ -4,12 +4,15 @@ import ModuleBtn from "../components/ModuleBtn";
 import { CiCircleList } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiReceipt } from "react-icons/ci";
+import { CiMonitor } from "react-icons/ci";
+import { CiFaceSmile } from "react-icons/ci";
+import { CiChat2 } from "react-icons/ci";
 
 const DashboardPage = () => {
   return (
     <section  className="p-5 min-h-screen">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-1 grid-row-3 gap-3  ">
+        <div className="grid grid-cols-2 md:grid-cols-2 grid-row-3 gap-5 ">
           <div className="col-span-1 row-span-1">
             <ModuleBtn
               name={"Product List"}
@@ -22,6 +25,15 @@ const DashboardPage = () => {
           </div>
           <div className="col-span-1 row-span-1">
             <ModuleBtn name={"Voucher Store"} icon={<CiReceipt className="size-6" />} url={"/voucher"} />
+          </div>
+          <div className="col-span-1 row-span-1">
+            <ModuleBtn name={"Blog Corner"} icon={<CiMonitor className="size-6" />} url={"/blog"} />
+          </div>
+          <div className="col-span-1 row-span-1">
+            <ModuleBtn name={"About-us"} icon={<CiFaceSmile className="size-6" />} url={"/about"} />
+          </div>
+          <div className="col-span-1 row-span-1">
+            <ModuleBtn name={"Contact-us"} icon={<CiChat2 className="size-6" />} url={"/contact"} />
           </div>
         </div>
       </Container>

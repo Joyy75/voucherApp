@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 bouncy.register();
 
-const ProductRow = ({ product: { id, product_name, price, create_at } }) => {
+const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
   const { mutate } = useSWRConfig();
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -19,7 +19,7 @@ const ProductRow = ({ product: { id, product_name, price, create_at } }) => {
       method: "DELETE",
     });
     mutate(import.meta.env.VITE_API_URL + `/products`);
-    toast.success('Successfully toasted!')
+    toast.success('Successfully Deleted!')
   };
   return (
     <>
@@ -28,12 +28,12 @@ const ProductRow = ({ product: { id, product_name, price, create_at } }) => {
         <td className="px-6 py-4 ">{product_name} </td>
         <td className="px-6 py-4 text-end">{price}</td>
         <td className="px-6 py-4 text-end">
-          <ShowDate timestamp={create_at} />
+          <ShowDate timestamp={created_at} />
         </td>
 
         <td className="px-6 py-4 text-end">
           <div className="inline-flex rounded-md shadow-xs gap-0 " role="group">
-            <Link to="{`/product/edit/${id}`}">
+           <Link to={`/product/edit/${id}`}>
               <button
                 type="button"
                 className="px-4 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-transparent dark:text-green-400 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:ring-blue-500 dark:focus:text-white"
@@ -45,10 +45,10 @@ const ProductRow = ({ product: { id, product_name, price, create_at } }) => {
               <button
                 onClick={handleDeleteBtn}
                 type="button"
-                className="px-4 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-transparent dark:border-gray-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:ring-blue-500 dark:focus:text-white"
+                className="px-4 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-1 focus:ring-slate-700 focus:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:ring-slate-500 dark:focus:text-white"
               >
                 {isDeleting ? (
-                  <l-bouncy size="20" speed="1.75" color="red"></l-bouncy>
+                  <l-bouncy size="20" speed="1.75" color="pink"></l-bouncy>
                 ) : (
                   <CiTrash className="inline-block text-xl" />
                 )}

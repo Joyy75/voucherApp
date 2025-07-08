@@ -1,17 +1,15 @@
 import React from 'react'
 import Breadcrumb from '../components/Breadcrumb';
 import { Container } from '../components/Container';
-import VoucherInfo from '../components/VoucherInfo';
 
-const SalePage = () => {
+const AboutUs = () => {
   return (
-       <section>
+     <section>
             <Container >
-            <Breadcrumb currentPageTitle={"Sale Section"} link={[]}/>
-            <VoucherInfo />
+            <Breadcrumb currentPageTitle={"AboutUs"} link={[]}/>
             </Container>
            </section>
   )
 }
 
-export default SalePage;
+export default AboutUs;

@@ -22,9 +22,9 @@ const Breadcrumb = ({ currentPageTitle, links }) => {
               <li key={index} className="inline-flex  items-center">
                 <Link
                   to={link.path}
-                  className="inline-flex gap-1 items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                  className="inline-flex gap-1 items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <TfiShiftLeftAlt  />
+                  <TfiShiftLeftAlt className="text-gray-800" />
                    
                   {link.title}
                 </Link>
