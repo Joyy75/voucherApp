@@ -28,7 +28,7 @@ const VoucherTabelRow = ({
 
 
   return (
-    <tr className="group odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-700 border-b dark:border-gray-700">
+    <tr className="bg-slate-800 border-b border-gray-700 group hover:bg-slate-700 transition-all duration-200">
       <td className="px-6 py-4 td-counter">{index + 1}</td>
       <th
         scope="row"

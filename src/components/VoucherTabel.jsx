@@ -11,7 +11,7 @@ const VoucherTabel = () => {
  
   return (
     <table className="w-full shadow-lg shadow-slate-700  text-sm text-left rtl:text-right text-gray-300">
-      <thead className=" text-gray-300 h-12 bg-slate-950">
+      <thead className=" text-gray-300 h-12 bg-slate-900">
         <tr>
           <th scope="col" className="px-6 py-3">
             #
@@ -50,7 +50,7 @@ const VoucherTabel = () => {
         ))}
       </tbody>
       <tfoot>
-        <tr className="text-gray-300 h-12 bg-slate-900">
+        <tr className="text-gray-300 h-12 bg-slate-800">
           <th
             scope="row"
             colSpan={4}
@@ -66,7 +66,7 @@ const VoucherTabel = () => {
           </td>
           <td className="px-6 py-4 text-end table-cell print:hidden" />
         </tr>
-        <tr className=" text-gray-300 h-12 bg-slate-900 ">
+        <tr className=" text-gray-300 h-12 bg-slate-800 ">
           <th
             scope="row"
             colSpan={4}
@@ -82,7 +82,7 @@ const VoucherTabel = () => {
           </td>
           <td className="px-6 py-4 text-end table-cell print:hidden" />
         </tr>
-        <tr className="text-gray-300 h-12 bg-slate-950">
+        <tr className="text-gray-300 h-12 bg-slate-900">
           <th
             scope="row"
             colSpan={4}

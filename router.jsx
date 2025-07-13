@@ -11,6 +11,7 @@ import ProductEditPage from "./src/pages/ProductEditPage";
 import Blog from "./src/pages/Blog";
 import ContactUs from "./src/pages/ContactUs";
 import AboutUs from "./src/pages/AboutUs";
+import VoucherDetailsPage from "./src/pages/VoucherDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
        {
         path: "/about",
         element: <AboutUs />,
+      },
+       {
+        path: "/voucherdetail/:id",
+        element: <VoucherDetailsPage />,
       },
     ],
   },

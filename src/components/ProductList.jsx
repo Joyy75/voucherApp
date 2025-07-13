@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
+import { CiCirclePlus, CiCircleRemove } from "react-icons/ci";
 import useSWR from "swr";
 import ProductListSkeletonLoader from "./ProductListSkeletonLoader";
 import ProductListEmptyStage from "./ProductListEmptyStage";
 import ProductRow from "./ProductRow";
+import { debounce } from "lodash";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const ProductList = () => {
-  // console.log(import.meta.env.VITE_API_URL);
+  const [productSearch, setProductSearch] = useState("");
+  console.log(productSearch);
+  const searchProductInput = useRef("");
+
   const { data, isLoading, error } = useSWR(
-    "http://localhost:5000/products",
+    productSearch
+      ? `${
+          import.meta.env.VITE_API_URL
+        }/products?product_name_like=${productSearch}`
+      : `${import.meta.env.VITE_API_URL}/products`,
     fetcher
   );
 
+  const handleProductSearch = debounce((e) => {
+    setProductSearch(e.target.value);
+  }, 500);
 
+  const handleClearSearch = () => {
+    setProductSearch("");
+    searchProductInput.current.value = "";
+  };
 
   return (
     <div className=" h-full p-3 bg-gradient-to-bl from-slate-300 to-slate-800 rounded-lg border  border-slate-600 shadow-inner shadow-slate-800 dark:bg-slate-900 dark:border-slate-700 dark:shadow-slate-800">
@@ -36,10 +51,21 @@ const ProductList = () => {
                 <input
                   type="text"
                   id="simple-search"
+                  ref={searchProductInput}
+                  onChange={handleProductSearch}
                   className="bg-gray-900 border border-gray-900 text-gray-900 text-sm rounded-lg  focus:border-slate-500 block w-full ps-10 p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-slate-500"
                   placeholder="Search Products"
                 />
               </div>
+              {productSearch && (
+                <button
+                  type="button"
+                  onClick={handleClearSearch}
+                  className="absolute top-0 bottom-0 right-3  text-gray-200 m-auto"
+                >
+                  <CiCircleRemove />
+                </button>
+              )}
             </form>
           </div>
         </div>
@@ -57,9 +83,7 @@ const ProductList = () => {
         <table className="w-full text-sm text-left rtl:text-right text-stone-500 dark:text-stone-400 border border-slate-600 ">
           <thead className="text-sm text-gray-100 uppercase bg-gradient-to-t from-slate-400 to-slate-800 ">
             <tr>
-              <th scope="col" className="px-6 py- font-light">
-                
-              </th>
+              <th scope="col" className="px-6 py- font-light"></th>
               <th scope="col" className="px-6 py-3 font-light">
                 Product
               </th>
@@ -76,14 +100,19 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody>
+            <tr className="bg-slate-700 hover:bg-slate-600 border-b text-gray-200 hover:text-gray-100 transition-colors duration-200 hidden last:table-row">
+              <td className="px-6 py-4 text-center" colSpan={5}>
+                There are no products .
+              </td>
+            </tr>
+
             {isLoading ? (
               <ProductListSkeletonLoader />
-            ) : 
-            data.length === 0 ? (<ProductListEmptyStage />
             ) : (
-              data.map ((product) => <ProductRow key={product.id} product={product}/> )
-            )
-            }
+              data.map((product) => (
+                <ProductRow key={product.id} product={product} />
+              ))
+            )}
           </tbody>
         </table>
       </div>

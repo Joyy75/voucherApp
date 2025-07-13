@@ -56,8 +56,7 @@ const ProductCreateCard = () => {
           <input
             {...register("product_name", {
               required: true,
-              minLength: 3,
-              maxLength: 10,
+
             })}
             type="text"
             id="first_name"
@@ -91,7 +90,7 @@ const ProductCreateCard = () => {
             {...register("price", {
               required: true,
               minLength: 1,
-              maxLength: 5,
+            
             })}
             type="number"
             id="last_name"

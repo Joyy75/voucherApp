@@ -1,17 +1,39 @@
-import React from 'react'
+import React, { use, useRef, useState } from 'react'
 import { Link } from "react-router-dom";
-import { CiSearch } from "react-icons/ci";
+import { CiCircleRemove, CiSearch } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import useSWR from 'swr';
 import VoucherListRow from './VoucherListRow';
+import { debounce, set } from 'lodash';
+import ProductListSkeletonLoader from './ProductListSkeletonLoader';
+import VoucherListSkeletonLoader from './VoucherListSkeletonLoader';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
+
 const VoucherList = () => {
-  const {data, isLoading, error} = useSWR(import.meta.env.VITE_API_URL + "/vouchers",fetcher);
+  const [search, setSearch] = useState("");
+  console.log(search);
+
+  const searchInput = useRef("");
+
+  const {data, isLoading, error} = useSWR(
+    search ? `${import.meta.env.VITE_API_URL}/vouchers?voucher_id_like=${search}` : 
+    `${import.meta.env.VITE_API_URL}/vouchers` 
+    , fetcher
+  );
   
+ const handleSearch= debounce ((e) => {
+  setSearch(e.target.value);
+ }, 500);
+ 
+ const handleClearSearch = () => {
+  setSearch("");
+  searchInput.current.value = "";
+}
+
   return (
       <div className="container p-2 bg-gradient-to-bl from-slate-300 to-slate-800 rounded-lg border  border-slate-600 shadow-inner shadow-slate-800 dark:bg-slate-900 dark:border-slate-700 dark:shadow-slate-800">
           <div className=" flex justify-between mb-2">
@@ -28,12 +50,20 @@ const VoucherList = () => {
                       <CiSearch className="text-gray-500 dark:text-gray-300" />
                     </div>
                     <input
+                      onChange={handleSearch}
+                      ref={searchInput}
                       type="text"
                       id="simple-search"
                       className="bg-gray-900 border border-gray-900 text-gray-900 text-sm rounded-lg  focus:border-slate-500 block w-full ps-10 p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-slate-500"
-                      placeholder="Search Vouchers"
+                      placeholder="Search VoucherID"
                     />
                   </div>
+                  {search && (
+                    <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className="absolute top-0 bottom-0 right-3  text-gray-200 m-auto"><CiCircleRemove/></button>
+                  )}
                 </form>
               </div>
             </div>
@@ -79,7 +109,7 @@ const VoucherList = () => {
                  {isLoading ? (
               <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 hidden last:table-row">
                 <td colSpan={5} className="px-6 py-4 text-center">
-                  Loading ...
+                  <VoucherListSkeletonLoader />
                 </td>
               </tr>
             ) : (

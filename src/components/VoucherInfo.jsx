@@ -5,6 +5,7 @@ import SaleForm from "./SaleForm";
 import VoucherTabel from "./VoucherTabel";
 import useRecordStore from "../store/useRecordStore";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 tailspin.register();
 const VoucherInfo = () => {
@@ -15,29 +16,36 @@ const VoucherInfo = () => {
     reset,
   } = useForm();
 
+    const navigate = useNavigate();
+
   const [isSending, setIsSending] = useState(false);
 
   const { records, resetRecord } = useRecordStore();
   const onSubmit = async(data) => {
-
     setIsSending(true);
     const total = records.reduce((a, b) => a + b.cost, 0);
     const tax = total * 0.07;
     const netTotal = total + tax;
 
     const currentVoucher = { ...data, records, total, tax, netTotal };
-    await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
+     const res = await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
       method: "POST",
       body: JSON.stringify(currentVoucher),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 
+    
+    const json = await res.json();
     toast.success("Voucher Created");
     resetRecord();
     reset();
     setIsSending(false);
+
+    if (data.redirect_to_detail) {
+      navigate(`/voucher/detail/${json.id}`);
+    }
   };
 
   function generateInvoiceNumber() {
@@ -88,8 +96,6 @@ const VoucherInfo = () => {
             <input
               {...register("customer_name", {
                 required: true,
-                minLength: 1,
-                maxLength: 10,
               })}
               type="text"
               className={`bg-gray-50 border ${
@@ -113,8 +119,6 @@ const VoucherInfo = () => {
             <input
               {...register("customer_email", {
                 required: true,
-                minLength: 3,
-                maxLength: 30,
               })}
               type="text"
               className={`bg-gray-50 border ${
@@ -164,7 +168,8 @@ const VoucherInfo = () => {
 
       <SaleForm />
       <VoucherTabel />
-
+  
+      
       <div className="flex mt-3 justify-end gap-2">
         <input
           {...register("all_correct", {
