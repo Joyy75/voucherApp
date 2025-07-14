@@ -53,6 +53,18 @@
       "price": "45000",
       "created_at": "2025-07-11T11:12:32.743Z",
       "id": 9
+    },
+    {
+      "product_name": "Lancelot Bren Skin",
+      "price": "40000",
+      "created_at": "2025-07-13T11:12:36.988Z",
+      "id": 10
+    },
+    {
+      "product_name": "Luo Yi Create Skin",
+      "price": "25000",
+      "created_at": "2025-07-14T14:19:30.939Z",
+      "id": 11
     }
   ],
   "vouchers": [
@@ -155,6 +167,81 @@
       "tax": 3150.0000000000005,
       "netTotal": 48150,
       "id": 6
+    },
+    {
+      "voucher_id": "INV-20250713 - 1148",
+      "customer_name": "Yue's Tg Customer",
+      "customer_email": "yue39@gmail.com",
+      "sale_date": "2025-07-13",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1752405312517,
+          "product": {
+            "product_name": "Lancelot Bren Skin",
+            "price": "40000",
+            "created_at": "2025-07-13T11:12:36.988Z",
+            "id": 10
+          },
+          "quantity": "2",
+          "cost": 80000,
+          "created_at": "2025-07-13T11:15:12.517Z"
+        }
+      ],
+      "total": 80000,
+      "tax": 5600.000000000001,
+      "netTotal": 85600,
+      "id": 9
+    },
+    {
+      "voucher_id": "INV-20250713 - 1998",
+      "customer_name": "Yue",
+      "customer_email": "yue39@gmail.com",
+      "sale_date": "2025-07-13",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1752405386748,
+          "product": {
+            "product_name": "Premium Starlight Card",
+            "price": "18000",
+            "created_at": "2025-07-11T11:06:07.551Z",
+            "id": 3
+          },
+          "quantity": "1",
+          "cost": 18000,
+          "created_at": "2025-07-13T11:16:26.748Z"
+        }
+      ],
+      "total": 18000,
+      "tax": 1260.0000000000002,
+      "netTotal": 19260,
+      "id": 10
+    },
+    {
+      "voucher_id": "INV-20250714 - 9439",
+      "customer_name": "Kai",
+      "customer_email": "kai75@gmail.com",
+      "sale_date": "2025-07-14",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1752502795318,
+          "product": {
+            "product_name": "Luo Yi Create Skin",
+            "price": "25000",
+            "created_at": "2025-07-14T14:19:30.939Z",
+            "id": 11
+          },
+          "quantity": "1",
+          "cost": 25000,
+          "created_at": "2025-07-14T14:19:55.318Z"
+        }
+      ],
+      "total": 25000,
+      "tax": 1750.0000000000002,
+      "netTotal": 26750,
+      "id": 11
     }
   ]
 }
