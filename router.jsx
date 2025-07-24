@@ -15,6 +15,7 @@ import VoucherDetailsPage from "./src/pages/VoucherDetailsPage";
 import LoginPage from "./src/pages/LoginPage";
 import RegisterPage from "./src/pages/RegisterPage";
 import UserProfilePage from "./src/pages/UserProfilePage";
+import ForgotPage from "./src/pages/ForgotPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
        {
         index: true,
         element: <LoginPage />,
+      },
+      {
+        path: "/forgot",
+        element: <ForgotPage />,
       },
       {
         path: "/register",

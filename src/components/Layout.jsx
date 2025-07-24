@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 const Layout = () => {
   return (
     <main className="flex flex-col min-h-screen ">
-      < Header />
+      {/* < Header /> */}
       <Outlet />
       <Toaster />
     </main>
